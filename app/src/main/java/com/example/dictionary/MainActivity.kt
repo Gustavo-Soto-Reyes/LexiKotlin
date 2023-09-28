@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.textView.text = "No definition yet"
+        binding.word.text = "No definition yet"
 
         binding.button.setOnClickListener {
             val word = binding.editTextWord.text.toString()
@@ -50,10 +50,14 @@ class MainActivity : AppCompatActivity() {
         if (data.isNotEmpty()) {
             Log.d("DATAGUS", data.toString())
             val firstEntry = data[0]
-            val updatedText = "Word: ${firstEntry.word}\nDefinition: ${firstEntry.meanings[0].definitions[0].definition}"
-            binding.textView.text = updatedText
+            val word = "${firstEntry.word}"
+            val defintion = "${firstEntry.meanings[0].definitions[0].definition}"
+            val pos = "${firstEntry.meanings[0].partOfSpeech}"
+            binding.word.text = word
+            binding.pos.text = pos
+            binding.definition.text = defintion
         } else {
-            binding.textView.text = "Oh No ... No definition found."
+            binding.word.text = "Oh No ... No definition found."
         }
     }
 }
