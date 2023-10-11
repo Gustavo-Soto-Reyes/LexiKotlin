@@ -41,6 +41,7 @@ class ApiDictionaryClient {
             }
         } catch (e: Exception) {
             // Handle exceptions (e.g., network error)
+            Log.e("API_ERROR", "API call failed", e)
             emptyList()
         }
     }

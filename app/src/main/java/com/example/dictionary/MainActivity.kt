@@ -15,13 +15,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.cancelChildren
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.*
-import org.json.JSONObject
-import java.io.IOException
-import java.util.Dictionary
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,10 +45,6 @@ class MainActivity : AppCompatActivity() {
             val word = binding.editTextWord.text.toString()
             Log.d("WORD", word)
             if (word.isNotEmpty()) {
-                // coroutine for API call
-                Log.d("WORD", word)
-
-                // Cancel any ongoing API calls before making a new one
                 coroutineScope.coroutineContext.cancelChildren()
 
                 GlobalScope.launch(Dispatchers.IO) {
@@ -93,7 +84,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            adapter.clearData()
+//            adapter.clearData()
             adapter.setData(defs)
 
 
