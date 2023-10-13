@@ -7,7 +7,7 @@ import com.example.dictionary.R
 
 class DefinitionAdapter : RecyclerView.Adapter<DefinitionAdapter.ViewHolder>() {
 
-    private var definitions: List<Definition> = emptyList()
+    private var definitions: List<MeaningCard> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.definition_item, parent, false)
@@ -23,13 +23,13 @@ class DefinitionAdapter : RecyclerView.Adapter<DefinitionAdapter.ViewHolder>() {
         return definitions.size
     }
 
-    fun setData(definitions: List<Definition>) {
+    fun setData(definitions: List<MeaningCard>) {
         this.definitions = definitions
         notifyDataSetChanged()
     }
 
     fun clearData() {
-        this.definitions = mutableListOf<Definition>()
+        this.definitions = mutableListOf<MeaningCard>()
         notifyDataSetChanged()
     }
 
@@ -38,10 +38,11 @@ class DefinitionAdapter : RecyclerView.Adapter<DefinitionAdapter.ViewHolder>() {
         private val pos: TextView = itemView.findViewById(R.id.pos)
         private val def: TextView = itemView.findViewById(R.id.definition)
 
-        fun bind(definition: Definition) {
+        fun bind(definition: MeaningCard) {
             title.text = definition.title
             pos.text = definition.pos
-            def.text = definition.definition
+            val definitionsList = definition.definition.joinToString("\n\n")
+            def.text = definitionsList
         }
     }
 }

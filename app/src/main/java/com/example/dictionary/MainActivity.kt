@@ -1,7 +1,7 @@
 package com.example.dictionary
 
-import Definition
 import DefinitionAdapter
+import MeaningCard
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -71,18 +71,26 @@ class MainActivity : AppCompatActivity() {
         if (data.isNotEmpty()) {
             Log.d("DATAGUS", data.toString())
 
-            var defs : MutableList<Definition> = mutableListOf()
-            if (data[0].meanings.size > 1){
-                for (i in 0..1) {
+
+
+            var defs : MutableList<MeaningCard> = mutableListOf()
+            var result = data[0]
+            for (i in 0 .. result.meanings.size-1){
+
                     val currDef = data[0]
-                    val def = Definition(
+                    val def = MeaningCard(
                         currDef.word,
                         currDef.meanings[i].partOfSpeech,
-                        currDef.meanings[i].definitions[0].definition
+                        currDef.meanings[i].definitions.map { it.definition }
+
+//                currDef.meanings[i].definitions[0].definition
                     )
                     defs.add(def)
-                }
             }
+
+
+
+
 
 //            adapter.clearData()
             adapter.setData(defs)
