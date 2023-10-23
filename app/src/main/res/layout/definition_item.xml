@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_marginTop="48dp"
+        android:textColor="@color/black"
         android:text="Word"
         android:gravity="center"
         android:textStyle="bold"
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:height="32dp"
+        android:textColor="@color/black"
         android:text="part of speech"
         android:gravity="center"
         android:textStyle="italic"/>
@@ -35,6 +37,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:textColor="@color/black"
         android:text="@string/definition"/>
 
 </LinearLayout>

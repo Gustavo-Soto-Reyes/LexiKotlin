@@ -2,9 +2,10 @@ package com.example.dictionary
 
 import DefinitionAdapter
 import MeaningCard
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dictionary.api.ApiDictionaryClient
@@ -17,6 +18,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,6 +64,9 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(binding.editTextWord.windowToken, 0)
+            binding.editTextWord.clearFocus()
         }
     }
 
@@ -70,32 +75,18 @@ class MainActivity : AppCompatActivity() {
         Log.d("DATAGUSNO", data.toString())
         if (data.isNotEmpty()) {
             Log.d("DATAGUS", data.toString())
-
-
-
             var defs : MutableList<MeaningCard> = mutableListOf()
             var result = data[0]
             for (i in 0 .. result.meanings.size-1){
-
                     val currDef = data[0]
                     val def = MeaningCard(
                         currDef.word,
                         currDef.meanings[i].partOfSpeech,
                         currDef.meanings[i].definitions.map { it.definition }
-
-//                currDef.meanings[i].definitions[0].definition
                     )
                     defs.add(def)
             }
-
-
-
-
-
-//            adapter.clearData()
             adapter.setData(defs)
-
-
         } else {
         }
     }

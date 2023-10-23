@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -15,6 +16,7 @@
         android:layout_marginRight="16dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:background="@drawable/input_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,22 +24,26 @@
         <EditText
             android:id="@+id/editTextWord"
             android:layout_width="41dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginBottom="0dp"
             android:layout_weight="4"
             android:hint="Enter a word"
             android:inputType="text"
             android:textColor="#000000"
             android:textColorHint="#000000"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:background="@android:color/transparent"
+            android:paddingLeft="32dp"
+            />
 
         <Button
             android:id="@+id/button"
             android:layout_width="68dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            app:icon="@android:drawable/ic_search_category_default" />
+            android:background="@drawable/search_button"
+            app:icon="@android:drawable/ic_search_category_default"/>
     </LinearLayout>
 
     <LinearLayout
