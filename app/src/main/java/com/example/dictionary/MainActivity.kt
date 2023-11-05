@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dictionary.api.ApiDictionaryClient
 import com.example.dictionary.api.DictionaryEntry
+import com.example.dictionary.api.ItemSpacingDecoration
 import com.example.dictionary.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +43,10 @@ class MainActivity : AppCompatActivity() {
         adapter = DefinitionAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+
+        val spacingDp = 8
+        val itemSpacingDecoration = ItemSpacingDecoration(this, spacingDp)
+        recyclerView.addItemDecoration(itemSpacingDecoration)
 
         binding.button.setOnClickListener {
             val word = binding.editTextWord.text.toString()

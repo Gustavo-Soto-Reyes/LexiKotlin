@@ -41,8 +41,13 @@ class DefinitionAdapter : RecyclerView.Adapter<DefinitionAdapter.ViewHolder>() {
         fun bind(definition: MeaningCard) {
             title.text = definition.title
             pos.text = definition.pos
-            val definitionsList = definition.definition.joinToString("\n\n")
-            def.text = definitionsList
+            val definitionsList = definition.definition.joinToString("\n- ")
+
+            def.text = if (definitionsList.isNotEmpty()){
+                "- " + definitionsList
+            } else{
+                ""
+            }
         }
     }
 }
