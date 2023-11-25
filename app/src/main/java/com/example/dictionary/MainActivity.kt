@@ -2,8 +2,10 @@ package com.example.dictionary
 
 import DefinitionAdapter
 import MeaningCard
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,6 +51,9 @@ class MainActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(itemSpacingDecoration)
 
         binding.button.setOnClickListener {
+            binding.errorMsg.visibility = View.GONE
+            binding.searchCta.visibility = View.GONE
+            binding.ctaImage.visibility = View.GONE
             val word = binding.editTextWord.text.toString()
             Log.d("WORD", word)
             if (word.isNotEmpty()) {
@@ -73,6 +78,14 @@ class MainActivity : AppCompatActivity() {
             imm.hideSoftInputFromWindow(binding.editTextWord.windowToken, 0)
             binding.editTextWord.clearFocus()
         }
+
+        binding.clearButton.setOnClickListener{
+            binding.editTextWord.setText("")
+            adapter.clearData()
+            binding.searchCta.visibility = View.VISIBLE
+            binding.ctaImage.visibility = View.VISIBLE
+            binding.errorMsg.visibility = View.GONE
+        }
     }
 
     private fun updateUI(data: List<DictionaryEntry>) {
@@ -93,6 +106,8 @@ class MainActivity : AppCompatActivity() {
             }
             adapter.setData(defs)
         } else {
+            adapter.clearData()
+            binding.errorMsg.visibility = View.VISIBLE
         }
     }
 }
