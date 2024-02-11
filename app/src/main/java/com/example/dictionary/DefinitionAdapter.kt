@@ -6,10 +6,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dictionary.R
-import kotlin.coroutines.coroutineContext
 
 class DefinitionAdapter(
-    val context: Context
+    val context: Context,
+    private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<DefinitionAdapter.ViewHolder>() {
 
     private var definitions: List<MeaningCard> = emptyList()
@@ -38,6 +38,10 @@ class DefinitionAdapter(
         notifyDataSetChanged()
     }
 
+    interface OnItemClickListener {
+        fun onItemClick(item: View)
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val title: TextView = itemView.findViewById(R.id.word)
         private val pos: TextView = itemView.findViewById(R.id.pos)
@@ -49,12 +53,13 @@ class DefinitionAdapter(
             val definitionsList = definition.definition.joinToString("\n- ")
 
             def.text = if (definitionsList.isNotEmpty()){
-                "- " + definitionsList
+                "- $definitionsList"
             } else{
                 ""
             }
             itemView.setOnClickListener{
-                Toast.makeText(context,"Definition Clicked", Toast.LENGTH_LONG).show()
+                listener.onItemClick(itemView)
+//                Toast.makeText(context,"Definition Clicked", Toast.LENGTH_LONG).show()
             }
         }
     }

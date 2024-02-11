@@ -2,7 +2,6 @@ package com.example.dictionary
 
 import DefinitionAdapter
 import MeaningCard
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -23,7 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DefinitionAdapter.OnItemClickListener {
 
     private lateinit var binding:ActivityMainBinding
     private lateinit var recyclerView: RecyclerView
@@ -42,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         recyclerView = findViewById(R.id.recyclerView)
-        adapter = DefinitionAdapter(this)
+        adapter = DefinitionAdapter(this, this )
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
@@ -86,6 +85,15 @@ class MainActivity : AppCompatActivity() {
             binding.ctaImage.visibility = View.VISIBLE
             binding.errorMsg.visibility = View.GONE
         }
+    }
+
+    override fun onItemClick(item: View) {
+        val frag = DefinitionPageFragment.newInstance(item)
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, frag)
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun updateUI(data: List<DictionaryEntry>) {
