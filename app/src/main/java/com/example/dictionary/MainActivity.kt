@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         recyclerView = findViewById(R.id.recyclerView)
-        adapter = DefinitionAdapter()
+        adapter = DefinitionAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 

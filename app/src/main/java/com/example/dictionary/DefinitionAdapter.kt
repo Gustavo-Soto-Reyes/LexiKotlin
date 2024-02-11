@@ -1,11 +1,16 @@
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dictionary.R
+import kotlin.coroutines.coroutineContext
 
-class DefinitionAdapter : RecyclerView.Adapter<DefinitionAdapter.ViewHolder>() {
+class DefinitionAdapter(
+    val context: Context
+) : RecyclerView.Adapter<DefinitionAdapter.ViewHolder>() {
 
     private var definitions: List<MeaningCard> = emptyList()
 
@@ -47,6 +52,11 @@ class DefinitionAdapter : RecyclerView.Adapter<DefinitionAdapter.ViewHolder>() {
                 "- " + definitionsList
             } else{
                 ""
+            }
+            itemView.setOnClickListener{
+                View.OnClickListener {
+                    Toast.makeText(context,"Definition Clicked", Toast.LENGTH_LONG)
+                }
             }
         }
     }
