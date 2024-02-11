@@ -54,9 +54,7 @@ class DefinitionAdapter(
                 ""
             }
             itemView.setOnClickListener{
-                View.OnClickListener {
-                    Toast.makeText(context,"Definition Clicked", Toast.LENGTH_LONG)
-                }
+                Toast.makeText(context,"Definition Clicked", Toast.LENGTH_LONG).show()
             }
         }
     }
