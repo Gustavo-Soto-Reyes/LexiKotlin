@@ -39,7 +39,7 @@ class DefinitionAdapter(
     }
 
     interface OnItemClickListener {
-        fun onItemClick(item: View)
+        fun onItemClick(definition: MeaningCard)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -58,7 +58,7 @@ class DefinitionAdapter(
                 ""
             }
             itemView.setOnClickListener{
-                listener.onItemClick(itemView)
+                listener.onItemClick(definition)
 //                Toast.makeText(context,"Definition Clicked", Toast.LENGTH_LONG).show()
             }
         }

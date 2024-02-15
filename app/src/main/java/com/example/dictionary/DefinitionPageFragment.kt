@@ -1,10 +1,12 @@
 package com.example.dictionary
 
+import MeaningCard
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +36,12 @@ class DefinitionPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_definition_page, container, false)
+        val v = inflater.inflate(R.layout.fragment_definition_page, container, false)
+        val fragPos: TextView = v.findViewById(R.id.frag_pos)
+        val fragTitle: TextView = v.findViewById(R.id.frag_title)
+        fragPos.text = param1
+        fragTitle.text = param2
+        return v
     }
 
     companion object {
@@ -48,11 +55,11 @@ class DefinitionPageFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: View): DefinitionPageFragment {
+        fun newInstance(meaningCard: MeaningCard): DefinitionPageFragment {
             return DefinitionPageFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, "Hello")
-                    putString(ARG_PARAM2, "Hello")
+                    putString(ARG_PARAM1, meaningCard.title)
+                    putString(ARG_PARAM2, meaningCard.pos)
                 }
             }
         }

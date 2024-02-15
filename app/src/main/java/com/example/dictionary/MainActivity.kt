@@ -87,8 +87,8 @@ class MainActivity : AppCompatActivity(), DefinitionAdapter.OnItemClickListener 
         }
     }
 
-    override fun onItemClick(item: View) {
-        val frag = DefinitionPageFragment.newInstance(item)
+    override fun onItemClick(meaningCard: MeaningCard) {
+        val frag = DefinitionPageFragment.newInstance(meaningCard)
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, frag)
